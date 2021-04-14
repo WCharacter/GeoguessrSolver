@@ -10,15 +10,10 @@ var addButton = function(){
 			window.open(url);
 		});
 		b.style = "position:relative; top:12px; font-weight: 600;";
-		a.appendChild(b);	
-	
-		setInterval(
-			() => chrome.runtime.sendMessage({action: "getUrl"}, function(response) {
-				url = response.url;
-			}), 1000
-		);
+		a.appendChild(b);
 	}
 }
+
 window.onload = addButton;
 
 chrome.runtime.onMessage.addListener(
@@ -26,9 +21,6 @@ chrome.runtime.onMessage.addListener(
 		if(request.action === "setUrl"){
 			console.log(request.url);
 			url = request.url;
-		}
-		else if(request.action === "ping"){
-			sendResponse("pong");
 		}
 	}
 );

@@ -20,11 +20,3 @@ chrome.webRequest.onCompleted.addListener(
 			"*://maps.googleapis.com/*"
 	]}
 );
-
-chrome.runtime.onMessage.addListener(
-	function(request, sender, sendResponse) {
-		if(request.action === "getUrl"){
-			sendResponse({url: url});
-	  	}
-	}
-);

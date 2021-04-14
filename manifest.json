@@ -8,8 +8,7 @@
 	},
 	"permissions": [
 		"webRequest",
-		"tabs",
-		"scripting"
+		"tabs"
 	],
 	"content_scripts": [
 		{

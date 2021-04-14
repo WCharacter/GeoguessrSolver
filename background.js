@@ -1,7 +1,8 @@
 url = "";
 
+console.log("added listener");
 chrome.webRequest.onCompleted.addListener(
-    function(details) {
+    function(details) {    
 		if(details.url.includes("GeoPhotoService.GetMetadata") && details.initiator == "https://www.geoguessr.com"){
 			fetch(details.url)
 				.then(response => response.text())
@@ -20,3 +21,11 @@ chrome.webRequest.onCompleted.addListener(
 			"*://maps.googleapis.com/*"
 	]}
 );
+
+chrome.runtime.onMessage.addListener(
+	function(request, sender, sendResponse) {
+		if(request.action === "getUrl"){
+			sendResponse({url: url});
+	  	}
+	}
+); 

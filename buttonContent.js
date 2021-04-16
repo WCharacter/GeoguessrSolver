@@ -32,7 +32,6 @@ chrome.runtime.onMessage.addListener(
 		if(request.action === "setUrl"){
 			if(request.url.length !== 0){
 				url = request.url;
-				b.onclick=`window.open(${url});`;
 			}
 		}
 	}

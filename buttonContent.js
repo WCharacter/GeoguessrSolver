@@ -12,15 +12,12 @@ var addButton = function(){
 		b = document.createElement("button");
 		b.id = "google-maps-button";
 		b.innerText = "Show on map";
-		b.addEventListener("click", clickListener);
+		b.addEventListener("click", clickListener);		
 		b.style = "position:relative; top:12px; font-weight: 600;";
 		a.appendChild(b);
 		setInterval(
 			() => 
 			{
-				if(getEventListeners(b).length === 0){
-					b.addEventListener("click", clickListener);
-				}
 				chrome.runtime.sendMessage({action: "getUrl"}, function(response) {
 					url = response.url;
 				})
@@ -35,6 +32,7 @@ chrome.runtime.onMessage.addListener(
 		if(request.action === "setUrl"){
 			if(request.url.length !== 0){
 				url = request.url;
+				b.onclick=`window.open(${url});`;
 			}
 		}
 	}
